@@ -20,10 +20,10 @@ app.post("/habits", (req, res) => {
   const { name, frequencia, status } = req.body;
   const newHabit = { id: habits.length + 1, name, frequencia, status };
   habits.push(newHabit);
-  res.status(201).json('Novo hábito criado: ', newHabit);
+  res.status(201).json('Novo hábito criado.');
 });
 
-app.put('habits/:id', (req, res) => {
+app.put('/habits/:id', (req, res) => {
     const { id } = req.params;
     const { name, frequencia, status } = req.body;
     const habit = habits.find((t) => t.id === parseInt(id));
@@ -39,6 +39,7 @@ app.put('habits/:id', (req, res) => {
 });
 
 app.delete('/habits/:id', (req, res) => {
+    const { id } = req.params;
     habitExists = habits.find(t => t.id === parseInt(id));
   if (!habitExists) {
     res.status(404).json({ message: "Tarefa não encontrada" });
